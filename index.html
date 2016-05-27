@@ -1,26 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Welcome to Pillarjs on OpenShift</title>
+  <title>WebSocket Echo Client</title>
+  <meta charset="UTF-8" />
+  <script>
+    "use strict";
+    // Initialize everything when the window finishes loading
+    window.addEventListener("load", function(event) {
+      var status = document.getElementById("status");
+      var url = document.getElementById("url");
+      var open = document.getElementById("open");
+      var close = document.getElementById("close");
+      var send = document.getElementById("send");
+      var text = document.getElementById("text");
+      var message = document.getElementById("message");
+      var socket;
 
-  <link href='/css/site.css' rel='stylesheet' type='text/css' />
+      status.textContent = "Not Connected";
+      url.value = "ws://geovisualizer.1ec1.dev-preview-int.openshiftapps.com:80/ws/";
+      close.disabled = true;
+      send.disabled = true;
+
+      // Create a new connection when the Connect button is clicked
+      open.addEventListener("click", function(event) {
+        open.disabled = true;
+        socket = new WebSocket(url.value, "echo-protocol");
+
+        socket.addEventListener("open", function(event) {
+          close.disabled = false;
+          send.disabled = false;
+          status.textContent = "Connected";
+        });
+
+        // Display messages received from the server
+        socket.addEventListener("message", function(event) {
+          message.textContent = "Server Says: " + event.data;
+        });
+
+        // Display any errors that occur
+        socket.addEventListener("error", function(event) {
+          message.textContent = "Error: " + event;
+        });
+
+        socket.addEventListener("close", function(event) {
+          open.disabled = false;
+          status.textContent = "Not Connected";
+        });
+      });
+
+      // Close the connection when the Disconnect button is clicked
+      close.addEventListener("click", function(event) {
+        close.disabled = true;
+        send.disabled = true;
+        message.textContent = "";
+        socket.close();
+      });
+
+      // Send text to the server when the Send button is clicked
+      send.addEventListener("click", function(event) {
+        socket.send(text.value);
+        text.value = "";
+      });
+    });
+  </script>
 </head>
 <body>
-
-<section class='container'>
-          <hgroup>
-            <h1>Welcome to your Pillarjs application on OpenShift</h1>
-          </hgroup>
-
-	  <p>Learn more about pillarjs here: <a href="https://pillarjs.github.io/">pillarjs.github.io</a></p>
-
-        
-        <footer>
-          <div class="logo"><a href="https://www.openshift.com/"></a></div>
-        </footer>
-
-</section>
+  Status: <span id="status"></span><br />
+  URL: <input id="url" /><br />
+  <input id="open" type="button" value="Connect" />&nbsp;
+  <input id="close" type="button" value="Disconnect" /><br />
+  <input id="send" type="button" value="Send" />&nbsp;
+  <input id="text" /><br />
+  <span id="message"></span>
 </body>
 </html>
