@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GeoVisualizer Client</title>
+  <title>WebSocket Echo Client</title>
   <meta charset="UTF-8" />
   <script>
     "use strict";
@@ -64,7 +64,7 @@
     });
   </script>
 </head>
-<body onload="onload();">
+<body>
   Status: <span id="status"></span><br />
   URL: <input id="url" /><br />
   <input id="open" type="button" value="Connect" />&nbsp;
@@ -72,44 +72,5 @@
   <input id="send" type="button" value="Send" />&nbsp;
   <input id="text" /><br />
   <span id="message"></span>
-  
-    <script src="//d3js.org/d3.v3.min.js"></script>
-  <script src="//d3js.org/queue.v1.min.js"></script>
-  <script src="//d3js.org/topojson.v1.min.js"></script>
-  <script src="/public/mbostock/raw/4090846/globe.js"></script>
-
-  <section class='container'>
-    <hgroup>
-      <input type="text" name="enter" class="enter" value="" id="input"/>
-      <input type="button" value="click" OnClick="kk()"/>
-      <script type="text/javascript">
-        var lolz;
-        function onload() { 
-          lolz = document.getElementById('input');
-        }
-        function kk(){
-          //alert(input.value);
-          transition(input.value);
-        }
-      </script>
-    </hgroup>
-   </section>
-   <section class='container'>
-    <hgroup>
-      <h1></h1>
-    </hgroup>
-   </section>
-    
-  <section class='container'>
-    <hgroup>
-      <p id="message">Test Deploy #24 - Welcome to your Node.js application on OpenShift</p>
-      <p id="log"></p>
-    </hgroup>
-   </section>
-    <table id="table"></table>
-     
-  
-  
-  
 </body>
 </html>

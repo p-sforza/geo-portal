@@ -1,9 +1,10 @@
-var cc       = require('config-multipaas'),
-    finalhandler= require('finalhandler'),
-    http     = require("http"),
-    Router       = require('router'),
-    fs = require('fs'),
-    serveStatic       = require("serve-static");
+var cc               = require('config-multipaas'),
+    finalhandler     = require('finalhandler'),
+    http             = require("http"),
+    Router           = require('router'),
+    fs               = require('fs'),
+    serveStatic      = require("serve-static"),
+    express         = require('express');
 
 var config   = cc();
 var app      = Router()
@@ -12,6 +13,7 @@ var app      = Router()
 app.use(serveStatic('static'))
 
 // Routes
+app.use('/public', express.static('public'));
 app.get("/status", function (req, res) {
   res.statusCode = 200
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
