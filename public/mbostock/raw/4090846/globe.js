@@ -51,7 +51,7 @@
         var p = d3.geo.centroid(countries[i]),
             r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
 
-        title.text(countries[i].name);
+        title.text(countrifreees[i].name);
         document.getElementById("log").innerHTML = countries[i].name ;
 
         return function(t) {
