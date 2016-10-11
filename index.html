@@ -24,7 +24,7 @@
     
     .button {
       font-family: myFirstFont;
-      background-color: a30000;
+      background-color: #820000;
       border: none;
       color: white;
       padding: 15px 32px;
@@ -35,6 +35,19 @@
       margin: 4px 2px;
       cursor: pointer;
       border-radius: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #dddddd;
     }
     
   </style>
@@ -72,7 +85,7 @@
 
         // Display messages received from the server
         socket.addEventListener("message", function(event) {
-          message.textContent = "Server Says: " + event.data;
+          message.textContent = event.data;
           transition(event.data);
         });
 
@@ -108,50 +121,45 @@
   
   <div id="ws_cmd">
     Status: <span id="status"></span><br />
-    URL: <input id="url" size="40"/><br />
+    URL: <input id="url" size="40"/>
     <input id="open" type="button" value="Connect" class="button"/>&nbsp;
     <input id="close" type="button" value="Disconnect" class="button"/><br />
-    <input id="send" type="button" value="Send" class="button"/>&nbsp;
-    <input id="text" /><br />
-    <span id="message"></span>
+    <!--    Not methods implemented on server side -->
+    <input id="text" />
+    <input id="send" type="button" value="Send" class="button"/>
+    
+	<table data-role="table" id="logtable" class="ui-responsive">
+		<thead>
+			<tr>
+				<th>Country Code</th>
+				<th>Country Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><p id="message"></p></td>
+				<td><p id="log"></p></td>
+			</tr>
+		</tbody>
+	</table>
   </div>
-  
+
+  <input type="text" name="enter" class="enter" value="" id="input"/>
+  <input type="button" value="click" OnClick="kk()"/>
+ 
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script src="//d3js.org/queue.v1.min.js"></script>
   <script src="//d3js.org/topojson.v1.min.js"></script>
   <script src="/public/mbostock/raw/4090846/globe.js"></script>
-
-  <section class='container'>
-    <hgroup>
-      <input type="text" name="enter" class="enter" value="" id="input"/>
-      <input type="button" value="click" OnClick="kk()"/>
-      <script type="text/javascript">
-        var lolz;
-        function onload() { 
-          lolz = document.getElementById('input');
-        }
-        function kk(){
-          //alert(input.value);
-          transition(input.value);
-        }
-      </script>
-    </hgroup>
-   </section>
-   <section class='container'>
-    <hgroup>
-      <h1></h1>
-    </hgroup>
-   </section>
-    
-  <section class='container'>
-    <hgroup>
-      <p id="message">Test Deploy #25 - Welcome to your Node.js application on OpenShift</p>
-      <p id="log"></p>
-    </hgroup>
-   </section>
-    <table id="table"></table>
- 
-  
-  
+  <script type="text/javascript">
+    var lolz;
+    function onload() { 
+      lolz = document.getElementById('input');
+    }
+    function kk(){
+      //alert(input.value);
+      transition(input.value);
+    }
+  </script>
 </body>
 </html>
