@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+  <style>
+    #WScmd {
+      margin: 10px 10px 10px 10px;
+    }
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    
+  </style>
+  
   <title>GeoVisualizer Client</title>
   <meta charset="UTF-8" />
   <script>
@@ -66,14 +86,17 @@
   </script>
 </head>
 <body onload="onload();">
-  <div style="background-image: url(https://www.redhat.com/cms/managed-files/RH_Forum_Events_Page_Banner_2000x941_0.png); color:#ffffff; border: 1px solid;"><h3>Welcome to Open Source Day 2016</h3></div>
-  Status: <span id="status"></span><br />
-  URL: <input id="url" width="60"/><br />
-  <input id="open" type="button" value="Connect" />&nbsp;
-  <input id="close" type="button" value="Disconnect" /><br />
-  <input id="send" type="button" value="Send" />&nbsp;
-  <input id="text" /><br />
-  <span id="message"></span>
+  <div align="center" style="background-image: url(https://www.redhat.com/cms/managed-files/RH_Forum_Events_Page_Banner_2000x941_0.png); color:#ffffff; border: 1px solid;"><h3>Welcome to Open Source Day 2016</h3></div>
+  
+  <div id="ws_cmd">
+    Status: <span id="status"></span><br />
+    URL: <input id="url" size="40"/><br />
+    <input id="open" type="button" value="Connect" class="button"/>&nbsp;
+    <input id="close" type="button" value="Disconnect" class="button"/><br />
+    <input id="send" type="button" value="Send" class="button"/>&nbsp;
+    <input id="text" /><br />
+    <span id="message"></span>
+  </div>
   
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script src="//d3js.org/queue.v1.min.js"></script>
