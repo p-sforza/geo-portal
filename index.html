@@ -139,7 +139,7 @@
   </script>
 </head>
 <body onload="onload();">
-  <div id="head" align="center"><p><font size="100">Welcome to the Open Source Day 2016</font></p></div>
+  <div id="head" align="center"><p><font size="100">Welcome to the Red Hat Open Source Day 2016</font></p></div>
   
   <div id="ws_cmd">
     <p><font size="40">Websocket</font></p> 
@@ -158,7 +158,7 @@
   </div>
   <div id="visualizer">
     <p><font size="40">Visualizer</font></p>
-	  <input id="input" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
+	  <input id="manualCC" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
 	  <input type="button" class="button" value="Send" OnClick="kk()"/>
 
 	<table data-role="table" id="logtable" class="ui-responsive">
@@ -172,13 +172,13 @@
 	<script src="//d3js.org/topojson.v1.min.js"></script>
 	<script src="/public/mbostock/raw/4090846/globe.js"></script>
 	<script type="text/javascript">
-		var lolz;
+		var CC;
 		function onload() { 
-		  lolz = document.getElementById('input');
+		  CC = document.getElementById('manualCC');
 		}
 		function kk(){
-		  //alert(input.value);
-		  transition(input.value);
+		  //alert(manualCC.value);
+		  transition(manualCC.value);
 		}
 	  </script>
   </div>
