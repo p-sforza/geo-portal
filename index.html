@@ -11,19 +11,31 @@
     }
 
     #ws_cmd {
-      font-family: myFirstFont;
-      margin: 10px 10px 10px 10px;
+      font-family: overpassFont;
+      margin: 20px 20px 20px 20px;
+      padding: 15px 32px;
+      border: 2px;
+      border-style: groove;
+    }
+
+    #visualizer {
+      font-family: overpassFont;
+      margin: 20px 20px 20px 20px;
+      padding: 15px 32px;
+      border: 2px;
+      border-style: groove;
+      
     }
     
     #head {
-      font-family: myFirstFont;
+      font-family: overpassFont;
       background-image: url(https://www.redhat.com/cms/managed-files/RH_Forum_Events_Page_Banner_2000x941_0.png);
       color:#ffffff; 
       border: 1px solid;
     }
     
     .button {
-      font-family: myFirstFont;
+      font-family: overpassFont;
       background-color: #820000;
       border: none;
       color: white;
@@ -36,6 +48,15 @@
       cursor: pointer;
       border-radius: 10px;
     }
+    .input{
+      font-family: overpassFont;
+      padding: 10px 32px;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      border-radius: 10px;
+    }
+    
     table {
       border-collapse: collapse;
       width: 100%;
@@ -80,7 +101,7 @@
         socket.addEventListener("open", function(event) {
           close.disabled = false;
           send.disabled = false;
-          status.textContent = "Connected";
+          status.textContent = "Connected to the websocket server";
         });
 
         // Display messages received from the server
@@ -117,49 +138,48 @@
   </script>
 </head>
 <body onload="onload();">
-  <div id="head" align="center"><h3>Welcome to Open Source Day 2016</h3></div>
+  <div id="head" align="center"><p><font size="100">Welcome to Open Source Day 2016</font></p></div>
   
   <div id="ws_cmd">
-    Status: <span id="status"></span><br />
-    URL: <input id="url" size="40"/>
-    <input id="open" type="button" value="Connect" class="button"/>&nbsp;
+    <p><font size="60">Websocket</font></p> 
+    <input id="url" class="input" size="40"/>
+    <input id="open" type="button" value="Connect" class="button"/>
     <input id="close" type="button" value="Disconnect" class="button"/><br />
+    <p>Status: <span id="status"></span><br /></p>
     <!--    Not methods implemented on server side -->
-    <input id="text" />
-    <input id="send" type="button" value="Send" class="button"/>
+    <input id="text"  class="input" size="40" placeholder="Send a message to the websocket Server"/>
+    <input id="send" type="button" class="button" value="Send"/>
     
 	<table data-role="table" id="logtable" class="ui-responsive">
-		<thead>
-			<tr>
-				<th>Country Code</th>
-				<th>Country Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><p id="message"></p></td>
-				<td><p id="log"></p></td>
-			</tr>
-		</tbody>
+      <thead><tr><th>Country Code</th></tr></thead>
+      <tbody><tr><td id="message"></td></tr></tbody>
 	</table>
   </div>
+  <div id="visualizer">
+    <p><font size="60">Visualizer</font></p>
+	  <input id="input" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
+	  <input type="button" class="button" value="Send" OnClick="kk()"/>
 
-  <input type="text" name="enter" class="enter" value="" id="input"/>
-  <input type="button" value="click" OnClick="kk()"/>
- 
-  <script src="//d3js.org/d3.v3.min.js"></script>
-  <script src="//d3js.org/queue.v1.min.js"></script>
-  <script src="//d3js.org/topojson.v1.min.js"></script>
-  <script src="/public/mbostock/raw/4090846/globe.js"></script>
-  <script type="text/javascript">
-    var lolz;
-    function onload() { 
-      lolz = document.getElementById('input');
-    }
-    function kk(){
-      //alert(input.value);
-      transition(input.value);
-    }
-  </script>
+	<table data-role="table" id="logtable" class="ui-responsive">
+		<thead><tr><th>Country Name</th></tr></thead>
+		<tbody><tr><td id="log"></td></tr></tbody>
+	</table>
+    <div id="globeCanvas" align="center"></div>
+
+	<script src="//d3js.org/d3.v3.min.js"></script>
+	<script src="//d3js.org/queue.v1.min.js"></script>
+	<script src="//d3js.org/topojson.v1.min.js"></script>
+	<script src="/public/mbostock/raw/4090846/globe.js"></script>
+	<script type="text/javascript">
+		var lolz;
+		function onload() { 
+		  lolz = document.getElementById('input');
+		}
+		function kk(){
+		  //alert(input.value);
+		  transition(input.value);
+		}
+	  </script>
+  </div>
 </body>
 </html>

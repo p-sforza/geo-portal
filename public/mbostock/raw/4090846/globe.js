@@ -7,7 +7,7 @@
     .clipAngle(90)
     .precision(0.6);
 
-  var canvas = d3.select("body").append("canvas")
+  var canvas = d3.select("#globeCanvas").append("canvas")
     .attr("width", width)
     .attr("height", height);
 
