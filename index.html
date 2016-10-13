@@ -109,7 +109,7 @@
           socket.addEventListener("close", function(event) {
             open.disabled = false;
             status.textContent = "Not Connected";
-            setTimeout(function(){buildws(websocketServerLocation)}, 5000);
+            setTimeout(function(){buildws(url.value)}, 5000);
           });
           return socket;
 
