@@ -89,9 +89,6 @@
       var socket;
       var buildws = function(){
     	  socket = new WebSocket(url.value, "echo-protocol");
-
-      
-  		
           socket.addEventListener("open", function(event) {
             close.disabled = false;
             send.disabled = false;
@@ -107,13 +104,12 @@
           // Display any errors that occur
           socket.addEventListener("error", function(event) {
             message.textContent = "Error: " + event;
-            open.disabled = true;
-            socket = buildws();
           });
  
           socket.addEventListener("close", function(event) {
             open.disabled = false;
             status.textContent = "Not Connected";
+            setTimeout(function(){buildws(websocketServerLocation)}, 5000);
           });
           return socket;
 
