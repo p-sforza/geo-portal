@@ -87,33 +87,6 @@
       var text = document.getElementById("text");
       var message = document.getElementById("message");
       var socket;
-      var buildws = function(){
-    	  socket = new WebSocket(url.value, "echo-protocol");
-
-          socket.addEventListener("open", function(event) {
-            close.disabled = false;
-            send.disabled = false;
-            status.textContent = "Connected to the websocket server";
-          });
-
-          // Display messages received from the server
-          socket.addEventListener("message", function(event) {
-            message.textContent = event.data;
-            transition(event.data);
-          });
-
-          // Display any errors that occur
-          socket.addEventListener("error", function(event) {
-            message.textContent = "Error: " + event;
-          });
-
-          socket.addEventListener("close", function(event) {
-            open.disabled = false;
-            status.textContent = "Not Connected";
-          });
-          return socket;
-
-          }
 
       status.textContent = "Not Connected";
       //url.value = "ws://geovisualizer.app.mitzi.local:80/meetup/";
@@ -124,7 +97,29 @@
       // Create a new connection when the Connect button is clicked
       open.addEventListener("click", function(event) {
         open.disabled = true;
-        socket = buildws();
+        socket = new WebSocket(url.value, "echo-protocol");
+
+        socket.addEventListener("open", function(event) {
+          close.disabled = false;
+          send.disabled = false;
+          status.textContent = "Connected to the websocket server";
+        });
+
+        // Display messages received from the server
+        socket.addEventListener("message", function(event) {
+          message.textContent = event.data;
+          transition(event.data);
+        });
+
+        // Display any errors that occur
+        socket.addEventListener("error", function(event) {
+          message.textContent = "Error: " + event;
+        });
+
+        socket.addEventListener("close", function(event) {
+          open.disabled = false;
+          status.textContent = "Not Connected";
+        });
       });
 
       // Close the connection when the Disconnect button is clicked
