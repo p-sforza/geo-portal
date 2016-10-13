@@ -90,6 +90,10 @@
       var buildws = function(){
     	  socket = new WebSocket(url.value, "echo-protocol");
 
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+       };
+  		
           socket.addEventListener("open", function(event) {
             close.disabled = false;
             send.disabled = false;
@@ -105,6 +109,9 @@
           // Display any errors that occur
           socket.addEventListener("error", function(event) {
             message.textContent = "Error: " + event;
+            open.disabled = true;
+            await sleep(3000); 
+            socket = buildws();
           });
 
           socket.addEventListener("close", function(event) {
