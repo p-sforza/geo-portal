@@ -104,7 +104,7 @@
           // Display any errors that occur
           socket.addEventListener("error", function(event) {
             message.textContent = "Error: " + event;
-          });
+            });
  
           socket.addEventListener("close", function(event) {
             open.disabled = false;
