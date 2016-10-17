@@ -114,6 +114,7 @@
             //console.log(event);
           	message     = JSON.parse(event.data);
           	var messageLog  = JSON.stringify(message);
+            document.getElementById("messageLog").innerHTML = messageLog ;
           	var countryCode = message[0]["cc"];
           	var saleValue   = message[0]["value"];
             transition(countryCode)
@@ -234,7 +235,7 @@
         </thead>
       <tbody>
         <tr>
-          <td id="message"></td>
+          <td id="messageLog"></td>
         </tr>
       </tbody>
     </div>
