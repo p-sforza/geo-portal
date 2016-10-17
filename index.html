@@ -114,11 +114,13 @@
             //console.log(event);
           	message     = JSON.parse(event.data);
           	var messageLog  = JSON.stringify(message);
-            document.getElementById("messageLog").innerHTML = messageLog ;
-          	var countryCode = message[0]["cc"];
+              document.getElementById("messageLog").innerHTML = messageLog ;
+
+            var countryCode = message[0]["cc"];
+              transition(countryCode)
+  
           	var saleValue   = message[0]["value"];
-            transition(countryCode)
-            document.getElementById("sales").innerHTML = saleValue ;
+              document.getElementById("sales").innerHTML = saleValue + " €";
           });
 
           // Display any errors that occur
