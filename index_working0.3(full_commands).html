@@ -147,7 +147,8 @@
   <div id="head" align="center"><p><font size="100">Welcome to the Red Hat Open Source Day 2016</font></p></div>
   
   <div id="ws_cmd">
-    <p><font size="40">Websocket</font></p> 
+    <p><font size="40">myStore real time order viewer</font></p> 
+    <p><font size="5">This demo show an application that ... </font></p> 
     <input id="url" class="input" size="40"/>
     <input id="open" type="button" value="Connect" class="button"/>
     <input id="close" type="button" value="Disconnect" class="button"/><br />
@@ -155,23 +156,23 @@
     <!--    Not methods implemented on server side -->
     <input id="text"  class="input" size="40" placeholder="Send a message to the websocket Server"/>
     <input id="send" type="button" class="button" value="Send"/>
-    
 	<table data-role="table" id="logtable" class="ui-responsive">
-      <thead><tr><th>Country Code</th></tr></thead>
-      <tbody><tr><td id="message"></td></tr></tbody>
+      <thead>
+        <tr>
+          <th>Country Code</th>
+          <th>Country Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="message"></td>
+          <td id="log"></td>
+        </tr>
+      </tbody>
 	</table>
-  </div>
-  <div id="visualizer">
-    <p><font size="40">Visualizer</font></p>
-	  <input id="manualCC" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
-	  <input type="button" class="button" value="Send" OnClick="kk()"/>
-
-	<table data-role="table" id="logtable" class="ui-responsive">
-		<thead><tr><th>Country Name</th></tr></thead>
-		<tbody><tr><td id="log"></td></tr></tbody>
-	</table>
+    <input id="manualCC" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
+    <input type="button" class="button" value="Send" OnClick="kk()"/>
     <div id="globeCanvas" align="center"></div>
-
 	<script src="//d3js.org/d3.v3.min.js"></script>
 	<script src="//d3js.org/queue.v1.min.js"></script>
 	<script src="//d3js.org/topojson.v1.min.js"></script>

@@ -48,6 +48,20 @@
       cursor: pointer;
       border-radius: 10px;
     }
+    .hyde_button {
+      font-family: overpassFont;
+      background-color: #820000;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 8px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
     .input{
       font-family: overpassFont;
       padding: 10px 32px;
@@ -142,30 +156,58 @@
       });
     });
   </script>
+
+  <script type="text/javascript">
+  // Unhyde element
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+     }
+</script>
+
 </head>
 <body onload="onload();">
   <div id="head" align="center"><p><font size="100">Welcome to the Red Hat Open Source Day 2016</font></p></div>
   
   <div id="ws_cmd">
-    <p><font size="40">myStore order visulizer</font></p> 
+    <p><font size="40">myStore real time order viewer</font></p> 
     <p><font size="5">This demo show an application that ... </font></p> 
-    <input id="url" class="input" size="40"/>
-    <input id="open" type="button" value="Connect" class="button"/>
-    <input id="close" type="button" value="Disconnect" class="button"/><br />
-    <p>Status: <span id="status"></span><br /></p>
-    
-	<table data-role="table" id="logtable" class="ui-responsive">
-      <thead><tr><th>Country Code</th></tr></thead>
-      <tbody><tr><td id="message"></td></tr></tbody>
-	</table>
 
+    <input id="hide_ws_connection" type="button" value="V" class="hyde_button" onclick="toggle_visibility('ws_connection');"/> ws Connection<br />
+    <div id="ws_connection"style="display: none;">
+      <input id="url" class="input" size="40"/>
+      <input id="open" type="button" value="Connect" class="button"/>
+      <input id="close" type="button" value="Disconnect" class="button"/><br />
+      <p>Status: <span id="status"></span><br /></p>
+    </div>
+
+    <input id="hide_ws_cmd" type="button" value="V" class="hyde_button" onclick="toggle_visibility('ws_cmd');"/> debug<br />
+    <div id="ws_cmd" style="display: none;">
+      <!--    Not methods implemented on server side -->
+      <input id="text"  class="input" size="40" placeholder="Send a message to the websocket Server"/>
+      <input id="send" type="button" class="button" value="Send"/>
+      <input id="manualCC" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
+      <input type="button" class="button" value="Send" OnClick="kk()"/>
+    </div>
 
 	<table data-role="table" id="logtable" class="ui-responsive">
-		<thead><tr><th>Country Name</th></tr></thead>
-		<tbody><tr><td id="log"></td></tr></tbody>
+      <thead>
+        <tr>
+          <th>Country Code</th>
+          <th>Country Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="message"></td>
+          <td id="log"></td>
+        </tr>
+      </tbody>
 	</table>
     <div id="globeCanvas" align="center"></div>
-
 	<script src="//d3js.org/d3.v3.min.js"></script>
 	<script src="//d3js.org/queue.v1.min.js"></script>
 	<script src="//d3js.org/topojson.v1.min.js"></script>
