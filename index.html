@@ -111,11 +111,12 @@
 
           // Display messages received from the server
           socket.addEventListener("message", function(event) {
-            //log = JSON.stringify(event.data);
-            console.log(event);
-          	message = JSON.parse(event.data);
-        	//message.textContent = event.data;
-            transition(message[0]["cc"]);
+            //console.log(event);
+          	message     = JSON.parse(event.data);
+          	messageLog  = JSON.stringify(message);
+          	countryCode = message[0]["cc"];
+          	saleValue   = message[0]["value"];
+            transition(countryCode);
           });
 
           // Display any errors that occur
