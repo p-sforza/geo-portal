@@ -113,9 +113,9 @@
           socket.addEventListener("message", function(event) {
             //console.log(event);
           	message     = JSON.parse(event.data);
-          	messageLog  = JSON.stringify(message);
-          	countryCode = message[0]["cc"];
-          	saleValue   = message[0]["value"];
+          	var messageLog  = JSON.stringify(message);
+          	var countryCode = message[0]["cc"];
+          	var saleValue   = message[0]["value"];
             transition(countryCode);
           });
 
