@@ -116,7 +116,8 @@
           	var messageLog  = JSON.stringify(message);
           	var countryCode = message[0]["cc"];
           	var saleValue   = message[0]["value"];
-            transition(countryCode);
+            transition(countryCode)
+            document.getElementById("sales").innerHTML = saleValue ;
           });
 
           // Display any errors that occur
