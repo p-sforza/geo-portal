@@ -111,8 +111,11 @@
 
           // Display messages received from the server
           socket.addEventListener("message", function(event) {
-            message.textContent = event.data;
-            transition(event.data);
+            //log = JSON.stringify(event.data);
+            console.log(event);
+          	message.textContent = JSON.parse(event.data);
+        	//message.textContent = event.data;
+            //transition(message[0].cc);
           });
 
           // Display any errors that occur
