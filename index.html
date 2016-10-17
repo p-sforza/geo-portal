@@ -115,7 +115,7 @@
             console.log(event);
           	message = JSON.parse(event.data);
         	//message.textContent = event.data;
-            transition(message["cc"]);
+            transition(message[0]["cc"]);
           });
 
           // Display any errors that occur
