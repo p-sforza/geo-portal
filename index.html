@@ -129,7 +129,7 @@
             });
  
           socket.addEventListener("close", function(event) {
-            open.disabled = false;
+            open.disabled = true;
             status.textContent = "Not Connected";
             setTimeout(function(){buildws(url.value)}, 5000);
           });
