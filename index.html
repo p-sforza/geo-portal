@@ -102,6 +102,7 @@
       var message = document.getElementById("message");
       var socket;
       var connectionRequest;
+      var countryColor;
       var buildws = function(){
     	  socket = new WebSocket(url.value, "echo-protocol");
           socket.addEventListener("open", function(event) {
