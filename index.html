@@ -10,6 +10,13 @@
     font-style: normal;
     }
 
+    #ws_connection {
+      font-family: overpassFont;
+      margin: 20px 20px 20px 20px;
+      padding: 15px 32px;
+      border: 2px;
+      border-style: groove;
+    }
     #ws_cmd {
       font-family: overpassFont;
       margin: 20px 20px 20px 20px;
@@ -33,7 +40,34 @@
       color:#ffffff; 
       border: 1px solid;
     }
+
+.button_hyded {
+      background: url(/public/g12059.png) no-repeat;
+      background-position: center;
+      background-size:auto;
+      width:74px;
+      height: 74px;
+      border-radius: 60px;
+      font-family: overpassFont;
+      background-color: #ffffff;
+      border: none;
+      color: black;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+}    
+.button_hyded:hover {
+    background: url(/public/g13183.png) no-repeat;
+    background-position: center; 
+    background-size:auto;
+    background-color: #820000;
+    width:85px;
+    height: 85px;
+    border-radius: 80px;
     
+}   
+
     .button {
       font-family: overpassFont;
       background-color: #820000;
@@ -54,6 +88,24 @@
       border: none;
       color: white;
       padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 8px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .hyded_hyde_button {
+      width: 60px;
+      height: 20px;
+      font-family: overpassFont;
+      /*This is a red or hyded button*/
+      /*background-color: #820000;*/
+      background-color: #ffffff;
+      border: none;
+      color: white;
+      padding: 3px 6px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -89,11 +141,13 @@
   
   <title>GeoVisualizer Client</title>
   <meta charset="UTF-8" />
-  <script type='text/javascript'> 
+  <script type='text/javascript'>
+    // Just declare a global var to pass the color attribute from websocket handling script and the globe.js script  
     var countryColor;
   </script>
 
   <script>
+    // websocket handling script
     "use strict";
     // Initialize everything when the window finishes loading
     window.addEventListener("load", function(event) {
@@ -189,19 +243,14 @@
 
 </head>
 <body onload="onload();">
-  <div id="head" align="center"><p><font size="100">Welcome to the Red Hat Open Source Day 2016</font></p></div>
+  <div id="head" align="center"><p><font size="100">Last on-line order received</font></p></div>
   
   <div id="body">
-    <p align="center"><font size="40">myStore real time order viewer</font></p> 
-    <p><font size="5">This demo show an application that ... </font></p> 
 
-    <input id="hide_ws_connection" type="button" value="V" class="hyde_button" onclick="toggle_visibility('ws_connection');"/> connection<br />
-    <div id="ws_connection"style="display: none;">
-      <input id="url" class="input" size="40"/>
-      <input id="open" type="button" value="Connect" class="button"/>
-      <input id="close" type="button" value="Disconnect" class="button"/><br />
-      <p>Status: <span id="status"></span><br /></p>
+    <div style="width:100px; height:100px; padding:8px;">
+      <input id="open" type="button" class="button_hyded"/>
     </div>
+    
     <div id="globeCanvas" align="center"></div>
 	<table data-role="table" id="logtable" class="ui-responsive">
       <thead>
@@ -232,8 +281,15 @@
 		}
 	  </script>
   </div>
-
-	<input id="hide_ws_cmd" type="button" value="V" class="hyde_button" onclick="toggle_visibility('ws_cmd');"/> debug<br />
+  <div id="section_debug">
+    <input id="hide_ws_connection" type="button" value="connection" class="hyded_hyde_button" onclick="toggle_visibility('ws_connection');"/> <br />
+    <div id="ws_connection"style="display: none;">
+      <input id="url" class="input" size="40"/>
+      <input id="open" type="button" value="Connect" class="button"/>
+      <input id="close" type="button" value="Disconnect" class="button"/><br />
+      <p>Status: <span id="status"></span><br /></p>
+    </div>
+    <input id="hide_ws_cmd" type="button" value="debug" class="hyded_hyde_button" onclick="toggle_visibility('ws_cmd');"/> <br />
 	<div id="ws_cmd" style="display: none;">
       <!--    Not methods implemented on server side -->
       <input id="text"  class="input" size="40" placeholder="Send a message to the websocket Server"/>
@@ -241,16 +297,17 @@
       <input id="manualCC" type="text" class="input" size="40" placeholder="Manual insert a CC to rotate the globe"/>
       <input type="button" class="button" value="Send" OnClick="kk()"/>
       <table data-role="table" id="logtable" class="ui-responsive">
-        <thead>
-          <tr>
-            <th>Server message</th>
-          </tr>
-        </thead>
+      <thead>
+        <tr>
+          <th>Server message</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
           <td id="messageLog"></td>
         </tr>
       </tbody>
     </div>
+  </div>
 </body>
 </html>
